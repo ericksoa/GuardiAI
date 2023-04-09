@@ -57,7 +57,7 @@ const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => 
 
   const changeData = response.data.map((d:any) => ({filename: d.filename, rawUrl: d.raw_url}))
 
-  const changesWithContent = await changeData.map(async (cd:any) => ({filename: cd.filename, content: (await axios.get(cd.rawUrl, { headers }))}) )
+  const changesWithContent = await Promise.all(changeData.map(async (cd:any) => ({filename: cd.filename, content: (await axios.get(cd.rawUrl, { headers }))}) ))
 
   console.log("changesWithContent: ", changesWithContent)
 
