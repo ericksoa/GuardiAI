@@ -47,7 +47,12 @@ const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => 
     Accept: 'application/vnd.github+json',
   };
 
+  console.log("apiURL:", apiUrl)
+  console.log("diffURL:", diffUrl)
+
   const response = await axios.get(diffUrl, { headers });
+
+  console.log("response", response)
 
   const changes = response.data.split('\n').filter((line: string) => line.startsWith('+') || line.startsWith('-'));
 
