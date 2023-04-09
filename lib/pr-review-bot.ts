@@ -59,22 +59,12 @@ const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => 
 
   const changesWithContent = await Promise.all(changeData.map(async (cd:any) => ({filename: cd.filename, content: (await axios.get(cd.rawUrl, { headers }))}) ))
 
-  console.log("changesWithContent: ", changesWithContent)
-
   //const changes = response.data.split('\n').filter((line: string) => line.startsWith('+') || line.startsWith('-'));
 
-  changesWithContent.forEach((c:any) => {
-    console.log("filename:", c.filename);
-    console.log("content:", c.content.slice(0,80))
-  })
+  const returnThis = changesWithContent.map(cwc => ({filename: cwc.filename, changes: cwc.content}))
 
   return {
-    files: [
-      {
-        filename: 'example.js',
-        changes: "",
-      },
-    ],
+    files: returnThis,
   };
 };
 
