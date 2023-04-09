@@ -56,17 +56,18 @@ const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => 
   const response = await axios.get(filesUrl, { headers });
 
   console.log("response", response)
-  const changes = [""]
+
+  const changes = response.data.map((d:any) => ({fileName: d.fileName, rawUrl: d.raw_url}))
 
   //const changes = response.data.split('\n').filter((line: string) => line.startsWith('+') || line.startsWith('-'));
 
-  //console.log("changes: ", changes)
+  console.log("changes: ", changes)
 
   return {
     files: [
       {
         filename: 'example.js',
-        changes: changes.join('\n'),
+        changes: "",
       },
     ],
   };
