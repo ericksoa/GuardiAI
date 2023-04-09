@@ -81,6 +81,9 @@ const checkForSecurityIssues = async (prData: PullRequestData): Promise<Security
   });
 
   //lets create a really dumb pull request:
+  // Unsafe example: using eval() function
+  const userInput = 'console.log("Hello, world!");';
+  eval(userInput);
 
   const issues = await Promise.all(issuePromises);
   return issues.filter((issue) => issue !== null) as SecurityIssue[];
