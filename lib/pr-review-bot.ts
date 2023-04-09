@@ -71,9 +71,9 @@ const checkForSecurityIssues = async (prData: PullRequestData): Promise<Security
       temperature: 0.5,
     });
 
-    const answer = response.data.choices[0].text.trim();
+    const answer = response?.data?.choices?.[0]?.text?.trim();
 
-    if (answer.toLowerCase() !== 'no' && answer !== '') {
+    if (answer && answer.toLowerCase() !== 'no' && answer !== '') {
       return { description: answer };
     } else {
       return null;
