@@ -42,7 +42,8 @@ export const analyzePullRequest = async (prUrl: string): Promise<string> => {
 const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => {
 
   const apiUrl = prUrl.replace('https://github.com/', 'https://api.github.com/repos/').replace('/pull/', '/pulls/');
-  const diffUrl = `${apiUrl}/1.diff`;
+  const prNumber = apiUrl.split('/').pop();
+  const diffUrl = `${apiUrl.split('/').slice(0, -1).join('/')}/${prNumber}.diff`;
 
   const headers = {
     Authorization: `token ${GITHUB_TOKEN}`,
