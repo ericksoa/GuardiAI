@@ -44,17 +44,23 @@ const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => 
   const apiUrl = prUrl.replace('https://github.com/', 'https://api.github.com/repos/').replace('/pull/', '/pulls/');
   const prNumber = apiUrl.split('/').pop();
   const diffUrl = `${apiUrl.split('/').slice(0, -1).join('/')}/${prNumber}.diff`;
+  const filesUrl = apiUrl + "/files"
+
+  console.log("filesUrl:", filesUrl)
 
   const headers = {
     Authorization: `token ${GITHUB_TOKEN}`,
     Accept: 'application/vnd.github+json',
   };
 
-  const response = await axios.get(diffUrl, { headers });
+  const response = await axios.get(filesUrl, { headers });
 
-  const changes = response.data.split('\n').filter((line: string) => line.startsWith('+') || line.startsWith('-'));
+  console.log("response", response)
+  const changes = [""]
 
-  console.log("changes: ", changes)
+  //const changes = response.data.split('\n').filter((line: string) => line.startsWith('+') || line.startsWith('-'));
+
+  //console.log("changes: ", changes)
 
   return {
     files: [
