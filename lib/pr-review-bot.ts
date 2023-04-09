@@ -24,7 +24,9 @@ interface SecurityIssue {
 
 export const analyzePullRequest = async (prUrl: string): Promise<string> => {
   const prData = await fetchPullRequestData(prUrl);
+  console.log("prData: ", prData)
   const securityIssues = await checkForSecurityIssues(prData);
+  console.log("securityIssues: ", securityIssues)
 
   if (securityIssues.length > 0) {
     const message =
