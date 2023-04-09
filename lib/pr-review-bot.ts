@@ -55,8 +55,6 @@ const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => 
 
   const response = await axios.get(filesUrl, { headers });
 
-  console.log("response", response)
-
   const changeData = response.data.map((d:any) => ({filename: d.filename, rawUrl: d.raw_url}))
 
   const changesWithContent = changeData.map(async (cd:any) => ({filename: cd.filename, content: (await axios.get(cd.rawUrl, { headers }))}) )
@@ -65,7 +63,7 @@ const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => 
 
   changesWithContent.forEach((c:any) => {
     console.log("filename", c.filename);
-    console.log("content", c.content)
+    console.log("content", c.content.slice(0,80))
   })
 
   return {
