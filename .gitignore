@@ -1,2 +1,6 @@
 # Project exclude paths
 /.next/
+/.env.local
+/next-env.d.ts
+/.idea/GuardiAI.iml
+/.idea/modules.xml
