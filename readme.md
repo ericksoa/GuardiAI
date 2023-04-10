@@ -17,9 +17,9 @@ To set up GuardiAI, follow these steps:
    - cd GuardiAI
    - npm install
 
-2. Create a `.env.local` file in the root folder and add your GitHub App ID and App Secret:
+2. Create a `.env.local` file in the root folder and add your GitHub App ID and Open API Key:
    - GITHUB_APP_ID=your_github_app_id
-   -  GITHUB_APP_SECRET=your_github_app_secret
+   - OPENAI_API_KEY=your_openapi_key
 
 3. Deploy the application to Vercel or a similar platform.
 
