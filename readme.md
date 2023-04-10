@@ -1,6 +1,6 @@
 # GuardiAI
 
-GuardiAI is an automated code review bot that checks submitted pull requests for potential security vulnerabilities in a Next.js project. It utilizes a webhook to receive notifications when pull requests are created, and provides feedback on the code changes to help maintain a secure codebase.
+GuardiAI is an automated code review bot that checks submitted pull requests for potential security vulnerabilities. It utilizes a webhook to receive notifications when pull requests are created, and provides feedback on the code changes to help maintain a secure codebase.
 
 ## Features
 
