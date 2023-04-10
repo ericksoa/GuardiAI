@@ -46,8 +46,6 @@ const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => 
   const diffUrl = `${apiUrl.split('/').slice(0, -1).join('/')}/${prNumber}.diff`;
   const filesUrl = apiUrl + "/files"
 
-  console.log("filesUrl:", filesUrl)
-
   const headers = {
     Authorization: `token ${GITHUB_TOKEN}`,
     Accept: 'application/vnd.github+json',
@@ -71,6 +69,9 @@ const fetchPullRequestData = async (prUrl: string): Promise<PullRequestData> => 
 const checkForSecurityIssues = async (prData: PullRequestData): Promise<SecurityIssue[]> => {
   const issuePromises = prData.files.map(async (file) => {
     const prompt = `Review the following code changes for security issues:\n\n${file.changes}\n\nDoes this code have any security issues? If so, please describe them.`;
+
+    console.log("prompt: ", prompt)
+
     const response = await openai.createCompletion({
       model: 'text-davinci-002',
       prompt,
